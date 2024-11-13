@@ -26,6 +26,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
   void initState() {
     super.initState();
 
+    // initialize animator
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -43,10 +44,12 @@ class _CategoriesScreenState extends State<CategoriesScreen>
   }
 
   void _selectCategory(BuildContext context, Category category) {
+    // apply filters and fetch meals
     final filteredMeals = widget.availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
 
+    // navigate to meals screen page
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => MealsScreen(
@@ -59,6 +62,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
 
   @override
   Widget build(BuildContext context) {
+    // category screen ui:
     return AnimatedBuilder(
       animation: _animationController,
       child: GridView(
@@ -70,11 +74,11 @@ class _CategoriesScreenState extends State<CategoriesScreen>
           mainAxisSpacing: 20,
         ),
         children: [
-          // availableCategories.map((category) => CategoryGridItem(category: category)).toList()
           for (final category in availableCategories)
             CategoryGridItem(
               category: category,
               onSelectCategory: () {
+                // select category and open list of meals
                 _selectCategory(context, category);
               },
             )

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/providers/filters_provider.dart';
-// import 'package:meals/screens/tabs.dart';
-// import 'package:meals/widgets/main_drawer.dart';
 
 class FiltersScreen extends ConsumerWidget {
   const FiltersScreen({super.key});
@@ -11,6 +9,7 @@ class FiltersScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final activeFilters = ref.watch(filtersProvider);
 
+    // filter screen ui:
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Filters'),
@@ -20,6 +19,7 @@ class FiltersScreen extends ConsumerWidget {
           SwitchListTile(
             value: activeFilters[Filter.glutenFree]!,
             onChanged: (isChecked) {
+              // call value change in provider
               ref
                   .read(filtersProvider.notifier)
                   .setFilter(Filter.glutenFree, isChecked);
@@ -27,13 +27,13 @@ class FiltersScreen extends ConsumerWidget {
             title: Text(
               'Gluten-free',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
             ),
             subtitle: Text(
               'Only include gluten-free meals.',
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
             ),
             activeColor: Theme.of(context).colorScheme.tertiary,
@@ -42,6 +42,7 @@ class FiltersScreen extends ConsumerWidget {
           SwitchListTile(
             value: activeFilters[Filter.lactoseFree]!,
             onChanged: (isChecked) {
+              // call value change in provider
               ref
                   .read(filtersProvider.notifier)
                   .setFilter(Filter.lactoseFree, isChecked);
@@ -49,13 +50,13 @@ class FiltersScreen extends ConsumerWidget {
             title: Text(
               'Lactose-free',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
             ),
             subtitle: Text(
               'Only include lactose-free meals.',
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
             ),
             activeColor: Theme.of(context).colorScheme.tertiary,
@@ -64,6 +65,7 @@ class FiltersScreen extends ConsumerWidget {
           SwitchListTile(
             value: activeFilters[Filter.vegetarian]!,
             onChanged: (isChecked) {
+              // call value change in provider
               ref
                   .read(filtersProvider.notifier)
                   .setFilter(Filter.vegetarian, isChecked);
@@ -71,13 +73,13 @@ class FiltersScreen extends ConsumerWidget {
             title: Text(
               'Vegetarian',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
             ),
             subtitle: Text(
               'Only include vegetarian meals.',
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
             ),
             activeColor: Theme.of(context).colorScheme.tertiary,
@@ -86,6 +88,7 @@ class FiltersScreen extends ConsumerWidget {
           SwitchListTile(
             value: activeFilters[Filter.vegan]!,
             onChanged: (isChecked) {
+              // call value change in provider
               ref
                   .read(filtersProvider.notifier)
                   .setFilter(Filter.vegan, isChecked);
@@ -93,13 +96,13 @@ class FiltersScreen extends ConsumerWidget {
             title: Text(
               'Vegan',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
             ),
             subtitle: Text(
               'Only include vegan meals.',
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
             ),
             activeColor: Theme.of(context).colorScheme.tertiary,

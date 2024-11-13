@@ -28,7 +28,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: const TabsScreen(),
+      // display home page innitially
+      home:
+          const TabsScreen(), // ctrl + click it to navigate to TabsScreen file
     );
   }
 }

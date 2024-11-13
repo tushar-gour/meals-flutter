@@ -14,16 +14,19 @@ class MealDetailsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final favouriteMeals = ref.watch(favouriteMealsProvider);
-
     final isFavourite = favouriteMeals.contains(meal);
 
+    // meal details ui:
     return Scaffold(
         appBar: AppBar(title: Text(meal.title), actions: [
           IconButton(
             onPressed: () {
+              // add to favourites
               final wasAdded = ref
                   .read(favouriteMealsProvider.notifier)
                   .toggleMealFavouriteStatus(meal);
+
+              // show snackbars
               ScaffoldMessenger.of(context).clearSnackBars();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -78,7 +81,7 @@ class MealDetailsScreen extends ConsumerWidget {
                 Text(
                   ingredient,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                 ),
               const SizedBox(height: 24),
@@ -100,7 +103,7 @@ class MealDetailsScreen extends ConsumerWidget {
                     step,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Theme.of(context).colorScheme.onBackground,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                   ),
                 ),

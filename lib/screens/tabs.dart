@@ -29,11 +29,13 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
 
   void _selectPage(int index) {
     setState(() {
+      // select page and reflect changes in ui
       _selectedPageIndex = index;
     });
   }
 
   void _setScreen(String identifier) async {
+    // navigate to filters screen
     Navigator.of(context).pop();
     if (identifier == 'filters') {
       await Navigator.of(context).push<Map<Filter, bool>>(
@@ -48,11 +50,10 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
   Widget build(BuildContext context) {
     final availableMeals = ref.watch(filteredMealsProvider);
 
-    Widget activePage = CategoriesScreen(
-      availableMeals: availableMeals,
-    );
+    Widget activePage = CategoriesScreen(availableMeals: availableMeals);
     var activePageTitle = 'Categories';
 
+    // change page based on index
     if (_selectedPageIndex == 1) {
       final favouriteMeals = ref.watch(favouriteMealsProvider);
       activePage = MealsScreen(
@@ -61,6 +62,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       activePageTitle = 'Your Favorites';
     }
 
+    // tabs screen ui:
     return Scaffold(
       appBar: AppBar(
         title: Text(activePageTitle),
